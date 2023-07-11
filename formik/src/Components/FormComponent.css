@@ -1,0 +1,210 @@
+body{
+    background-color: rgb(127, 190, 192);
+}
+/* Estilos barra de navegación */
+.navbar {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.navbar li a:hover {
+  color: #fff;
+  background-color: #007bff;
+}
+
+/* Estilos generales */
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #0e2fc0;
+  border-radius: 5px;
+  background-color: #18a6df;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.cancel-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+  background-color: #b02a37;
+}
+
+/* Estilos específicos para algunos campos */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper:after {
+  /* content: "\\25BC"; */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.3s;
+}
+
+.select-wrapper:hover:after {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.automatic-date-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.automatic-date-field input {
+  margin-right: 10px;
+}
+
+/* Estilos para el mensaje */
+.success-message-container {
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.success-message-container h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.success-message-container p {
+  color: #333;
+}
+
+/* Estilos para la tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.table th {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.table td.actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.table button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.table button:hover {
+  background-color: #0056b3;
+}
+/* boton fromvalidtor */
+.error-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "name": "Loretoasdasdasd",
+      "lastname": "Leal Aracena",
+      "email": "loreto@correo.cl",
+      "age": 58,
+      "select": "Principiante",
+      "radio": "FullStack",
+      "automaticDate": "11/7/2023",
+      "acepto": true,
+      "id": 1
+    }
+  ]
+}
