@@ -1,12 +1,12 @@
 {
   "data": [
     {
-      "name": "Loretoasdasdasd",
-      "lastname": "Leal Aracena",
-      "email": "loreto@correo.cl",
-      "age": 58,
-      "select": "Principiante",
-      "radio": "FullStack",
+      "name": "Hector Hugo",
+      "lastname": "Cano Leal",
+      "email": "hecor.cano@inacapmail.cl",
+      "age": 36,
+      "select": "Intermedio",
+      "radio": "Front-End",
       "automaticDate": "11/7/2023",
       "acepto": true,
       "id": 1
