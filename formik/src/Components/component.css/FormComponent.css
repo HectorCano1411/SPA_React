@@ -1,0 +1,30 @@
+
+/* Estilos barra de navegación */
+.navbar {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.navbar li a:hover {
+  color: #fff;
+  background-color: #007bff;
+}
+

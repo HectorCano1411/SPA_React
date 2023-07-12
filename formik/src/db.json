@@ -4,12 +4,34 @@
       "name": "Hector Hugo",
       "lastname": "Cano Leal",
       "email": "hecor.cano@inacapmail.cl",
-      "age": 36,
-      "select": "Intermedio",
-      "radio": "Front-End",
-      "automaticDate": "11/7/2023",
+      "age": 18,
+      "select": "Principiante",
+      "radio": "Back-End",
+      "automaticDate": "12/7/2023",
       "acepto": true,
       "id": 1
+    },
+    {
+      "name": "Hector Hugo",
+      "lastname": "Cano Leal",
+      "email": "Thaina.cano@correo.cl",
+      "age": 36,
+      "select": "Principiante",
+      "radio": "Back-End",
+      "automaticDate": "12/7/2023",
+      "acepto": true,
+      "id": 2
+    },
+    {
+      "name": "Hector Hugo",
+      "lastname": "Cano Leal",
+      "email": "hecor.cano@inacapmail.cl",
+      "age": 36,
+      "select": "Intermedio",
+      "radio": "Back-End",
+      "automaticDate": "12/7/2023",
+      "acepto": true,
+      "id": 3
     }
   ]
 }

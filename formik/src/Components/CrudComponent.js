@@ -1,3 +1,207 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import FormComponent from './FormComponent';
+import Table from './Table';
+import './component.css/SuccessMessage.css'
+import './component.css/Table.css'
+
+
+
+const CrudComponent = () => {
+  const initialFormValues = {
+    name: '',
+    lastname: '',
+    email: '',
+    age: '',
+    select: '',
+    radio: '',
+    automaticDate: '',
+    acepto: false,
+  };
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formData, setFormData] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    fetchData(); // Cargar datos de la API al cargar el componente
+  }, []);
+
+  useEffect(() => {
+    saveDataToLocalStorage(); // Guardar datos en el localStorage
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/data'); // Reemplazar la URL con la de tu API
+      const data = response.data;
+      setFormData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const saveDataToLocalStorage = () => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  };
+
+  const resetForm = () => {
+    setFormValues(initialFormValues);
+  };
+
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      let response;
+
+      if (isEditing) {
+        response = await axios.put(`http://localhost:3000/data/${formData[editIndex].id}`, values, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      } else {
+        response = await axios.post('http://localhost:3000/data', values, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      }
+
+      if (response.status === 200 || response.status === 201) {
+        const responseData = response.data;
+        if (isEditing) {
+          setFormData((prevData) => {
+            const newData = [...prevData];
+            newData[editIndex] = responseData;
+            return newData;
+          });
+          setIsEditing(false);
+          setEditIndex(null);
+          resetForm(); // Limpiar el formulario después de editar
+          setShowSuccessMessage(true); // Mostrar el mensaje de ingreso exitoso
+        } else {
+          setFormData((prevData) => [...prevData, responseData]);
+          resetForm(); // Limpiar el formulario después de guardar
+          setShowSuccessMessage(true); // Mostrar el mensaje de ingreso exitoso
+        }
+      } else {
+        throw new Error('Error al cargar los datos');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const SuccessMessage = ({ showMessage, setShowMessage }) => {
+    useEffect(() => {
+      if (showMessage) {
+        const timer = setTimeout(() => {
+          setShowMessage(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+      }
+    }, [showMessage, setShowMessage]);
+  
+    return (
+      <div>
+        {showMessage && (
+          <div className="success-message-container">
+          <h2>Ingreso exitoso</h2>
+          <p>Los datos se han almacenado correctamente en el Local Storage.</p>
+        </div>
+        )}
+      </div>
+    );
+  };
+  const handleEditClick = (index) => {
+    setIsEditing(true);
+    setEditIndex(index);
+    setFormValues(formData[index]);
+  };
+
+  const handleDelete = async (index) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/data/${formData[index].id}`);
+      if (response.status === 200) {
+        setFormData((prevData) => {
+          const newData = [...prevData];
+          newData.splice(index, 1);
+          return newData;
+        });
+      } else {
+        throw new Error('Error al eliminar los datos');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditIndex(null);
+    resetForm();
+  };
+
+  return (
+    <div>
+      <FormComponent
+        initialValues={formValues}
+        isEditing={isEditing}
+        handleCancelEdit={handleCancelEdit}
+        onSubmit={handleSubmit}
+      />
+      <SuccessMessage
+        showMessage={showSuccessMessage}
+        setShowMessage={setShowSuccessMessage}
+      />
+      <Table formData={formData} handleEditClick={handleEditClick} handleDelete={handleDelete} />
+    </div>
+  );
+};
+
+export default CrudComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import FormComponent from './FormComponent';
@@ -285,164 +489,3 @@
 
 // export default CrudComponent;
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import FormComponent from './FormComponent';
-import Table from './Table';
-
-const SuccessMessage = ({ showMessage, setShowMessage }) => {
-  useEffect(() => {
-    if (showMessage) {
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [showMessage, setShowMessage]);
-
-  return (
-    <div>
-      {showMessage && (
-        <div className="success-message">
-          <p>Datos ingresados exitosamente.</p>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const CrudComponent = () => {
-  const initialFormValues = {
-    name: '',
-    lastname: '',
-    email: '',
-    age: '',
-    select: '',
-    radio: '',
-    automaticDate: '',
-    acepto: false,
-  };
-
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [formData, setFormData] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-  useEffect(() => {
-    fetchData(); // Cargar datos de la API al cargar el componente
-  }, []);
-
-  useEffect(() => {
-    saveDataToLocalStorage(); // Guardar datos en el localStorage
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData]);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/data'); // Reemplazar la URL con la de tu API
-      const data = response.data;
-      setFormData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const saveDataToLocalStorage = () => {
-    localStorage.setItem('formData', JSON.stringify(formData));
-  };
-
-  const resetForm = () => {
-    setFormValues(initialFormValues);
-  };
-
-  const handleSubmit = async (values, { resetForm }) => {
-    try {
-      let response;
-
-      if (isEditing) {
-        response = await axios.put(`http://localhost:3000/data/${formData[editIndex].id}`, values, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-      } else {
-        response = await axios.post('http://localhost:3000/data', values, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-      }
-
-      if (response.status === 200 || response.status === 201) {
-        const responseData = response.data;
-        if (isEditing) {
-          setFormData((prevData) => {
-            const newData = [...prevData];
-            newData[editIndex] = responseData;
-            return newData;
-          });
-          setIsEditing(false);
-          setEditIndex(null);
-          resetForm(); // Limpiar el formulario después de editar
-          setShowSuccessMessage(true); // Mostrar el mensaje de ingreso exitoso
-        } else {
-          setFormData((prevData) => [...prevData, responseData]);
-          resetForm(); // Limpiar el formulario después de guardar
-          setShowSuccessMessage(true); // Mostrar el mensaje de ingreso exitoso
-        }
-      } else {
-        throw new Error('Error al cargar los datos');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleEditClick = (index) => {
-    setIsEditing(true);
-    setEditIndex(index);
-    setFormValues(formData[index]);
-  };
-
-  const handleDelete = async (index) => {
-    try {
-      const response = await axios.delete(`http://localhost:3000/data/${formData[index].id}`);
-      if (response.status === 200) {
-        setFormData((prevData) => {
-          const newData = [...prevData];
-          newData.splice(index, 1);
-          return newData;
-        });
-      } else {
-        throw new Error('Error al eliminar los datos');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleCancelEdit = () => {
-    setIsEditing(false);
-    setEditIndex(null);
-    resetForm();
-  };
-
-  return (
-    <div>
-      <FormComponent
-        initialValues={formValues}
-        isEditing={isEditing}
-        handleCancelEdit={handleCancelEdit}
-        onSubmit={handleSubmit}
-      />
-      <SuccessMessage
-        showMessage={showSuccessMessage}
-        setShowMessage={setShowSuccessMessage}
-      />
-      <Table formData={formData} handleEditClick={handleEditClick} handleDelete={handleDelete} />
-    </div>
-  );
-};
-
-export default CrudComponent;
