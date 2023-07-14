@@ -1,0 +1,173 @@
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Distribuye el espacio en dos columnas */
+    gap: 20px; /* Espacio entre las columnas */
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+    margin-bottom: 530px;
+  }
+  
+  .header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    grid-column: 1 / span 2; /* Ocupa las dos columnas completas */
+  }
+  
+  .product-list {
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  .product-list h2 {
+    color: #333;
+  }
+  
+  .product-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .product-list li {
+    background-color: #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .product-list li:hover {
+    background-color: #bbb;
+  }
+  
+  .main-section {
+    background-color: #fff;
+    padding: 20px;
+  }
+  
+  .main-section h1 {
+    color: #333;
+  }
+  
+  .main-section p {
+    color: #777;
+  }
+  
+  .table-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .table-container th {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  .table-container td {
+    padding: 10px;
+  }
+  
+  .table-container img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .table-container h3 {
+    margin-top: 10px;
+  }
+  
+  .table-container p {
+    margin-bottom: 10px;
+  }
+  
+  .table-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .table-container button:hover {
+    background-color: #45a049;
+  }
+  @media (max-width: 768px) {
+    .home-container {
+      grid-template-columns: 1fr; /* Cambia a una sola columna en dispositivos móviles */
+      margin-bottom: 0; /* Elimina el margen inferior para dispositivos móviles */
+    }
+  
+    .header {
+      grid-column: 1; /* Ocupa una sola columna en dispositivos móviles */
+    }
+  
+    .product-list {
+      padding: 10px; /* Reduce el espacio interno en dispositivos móviles */
+    }
+  
+    .product-list h2 {
+      font-size: 18px; /* Reduce el tamaño de fuente en dispositivos móviles */
+    }
+  
+    .product-list li {
+      padding: 5px; /* Reduce el espacio interno en dispositivos móviles */
+      margin-bottom: 5px; /* Reduce el margen inferior en dispositivos móviles */
+    }
+  
+    .main-section {
+      padding: 10px; /* Reduce el espacio interno en dispositivos móviles */
+      margin-bottom: 1600px;
+      
+    }
+  
+    .main-section h1 {
+      font-size: 24px; /* Reduce el tamaño de fuente en dispositivos móviles */
+    }
+  
+    .main-section p {
+      font-size: 14px; /* Reduce el tamaño de fuente en dispositivos móviles */
+    }
+  
+    .table-container {
+      max-width: 100%; /* Ajusta el ancho máximo a la pantalla en dispositivos móviles */
+    }
+  
+    .table-container td {
+      padding: 5px; /* Reduce el espacio interno en dispositivos móviles */
+    }
+  
+    .table-container img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    .table-container h3 {
+      margin-top: 5px; /* Reduce el margen superior en dispositivos móviles */
+      font-size: 16px; /* Reduce el tamaño de fuente en dispositivos móviles */
+    }
+  
+    .table-container p {
+      margin-bottom: 5px; /* Reduce el margen inferior en dispositivos móviles */
+      font-size: 12px; /* Reduce el tamaño de fuente en dispositivos móviles */
+    }
+  
+    .table-container button {
+      padding: 4px 8px; /* Reduce el padding en dispositivos móviles */
+      font-size: 12px; /* Reduce el tamaño de fuente en dispositivos móviles */
+      
+    }
+  }
+  

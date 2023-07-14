@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import TextInput from './TextInput';
 import Checkbox from './Checkbox';
@@ -54,65 +54,73 @@ const validate = (values) => {
 
 
 const FormComponent = ({ initialValues, isEditing, handleCancelEdit, onSubmit }) => {
+  const [formVisible, setFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setFormVisible(!formVisible);
+  };
+
+  const hideForm = () => {
+    setFormVisible(false);
+  };
+
   return (
     <div className="form-control">
-
-    <Formik
-      initialValues={initialValues}
-      validate={validate}
-      onSubmit={onSubmit}
-      enableReinitialize={isEditing}
-    >
-      <Form>
-        <TextInput name='name' label='Nombres' />
-        <br />
-        <TextInput name='lastname' label='Apellidos' />
-        <br />
-        <TextInput name='email' label='Correo' />
-        <br />
-        <AgeField name="age" label="Edad" />
-        <br />
-        <Select label='Categoria' name='select'>
-          <option value=''>Selecciona una Opcion</option>
-          <option value='Principiante'>Principiante</option>
-          <option value='Intermedio'>Intermedio</option>
-          <option value='Avanzado'>Avanzado</option>
-        </Select>
-        <br />
-        <Radio name='radio' value='Front-End' label='Front-End' />
-        <Radio name='radio' value='Back-End' label='Back-End' />
-        <Radio name='radio' value='FullStack' label='FullStack' />
-        <ErrorMessage name='radio' />
-        <br />
-        <AutomaticDateField name="automaticDate" label="Fecha automática" />
-        <br />
-        <Checkbox name='acepto'>Aceptar Términos y Condiciones</Checkbox>
-        <br />
-        <div className={`button-container ${isEditing ? 'mobile' : ''}`}>
-        <button className="submit-button" type="submit">
-          {isEditing ? 'Guardar' : 'Agregar'}
+      {formVisible && (
+        <Formik
+          initialValues={initialValues}
+          validate={validate}
+          onSubmit={onSubmit}
+          enableReinitialize={isEditing}
+        >
+          <Form>
+            <TextInput name="name" label="Nombres" />
+            <br />
+            <TextInput name="lastname" label="Apellidos" />
+            <br />
+            <TextInput name="email" label="Correo" />
+            <br />
+            <AgeField name="age" label="Edad" />
+            <br />
+            <Select label="Categoria" name="select">
+              <option value="">Selecciona una Opcion</option>
+              <option value="Principiante">Principiante</option>
+              <option value="Intermedio">Intermedio</option>
+              <option value="Avanzado">Avanzado</option>
+            </Select>
+            <br />
+            <Radio name="radio" value="Front-End" label="Front-End" />
+            <Radio name="radio" value="Back-End" label="Back-End" />
+            <Radio name="radio" value="FullStack" label="FullStack" />
+            <ErrorMessage name="radio" />
+            <br />
+            <AutomaticDateField name="automaticDate" label="Fecha automática" />
+            <br />
+            <Checkbox name="acepto">Aceptar Términos y Condiciones</Checkbox>
+            <br />
+            <div className={`button-container ${isEditing ? 'mobile' : ''}`}>
+              <button className="submit-button" type="submit">
+                {isEditing ? 'Guardar' : 'Agregar'}
+              </button>
+              {isEditing && (
+                <button className="cancel-button" type="button" onClick={handleCancelEdit}>
+                  Cancelar
+                </button>
+              )}
+              <button className="hide-button" type="button" onClick={hideForm}>
+                Ocultar
+              </button>
+            </div>
+          </Form>
+        </Formik>
+      )}
+      {!formVisible && (
+        <button className="toggle-button" onClick={toggleFormVisibility}>
+          {isEditing ? 'Editar' : 'Agregar'}
         </button>
-        {isEditing && (
-          <button className="cancel-button" type="button" onClick={handleCancelEdit}>
-            Cancelar
-          </button>
-          )}
-        </div>
-
-        {/* <button type='submit'>
-          {isEditing ? 'Guardar' : 'Agregar'}
-        </button>
-        {isEditing && (
-          <button type='button' onClick={handleCancelEdit}>
-            Cancelar
-          </button> */}
-        {/* )} */}
-      </Form>
-    </Formik>
+      )}
     </div>
-
   );
 };
 
 export default FormComponent;
-

@@ -1,0 +1,40 @@
+.containerApp {
+  display: grid;
+  grid-template-columns: 1fr; /* Columna única */
+  grid-template-rows: auto; /* Altura automática */
+  grid-gap: 20px; /* Espacio entre los componentes */
+
+  /* Estilos adicionales para el contenedor si es necesario */
+}
+
+/* Estilos para cada componente */
+.BarraNav {
+  grid-column: 1; /* Componente en la primera columna */
+  grid-row: 1; /* Componente en la primera fila */
+}
+
+.Home {
+  grid-column: 1; /* Componente en la primera columna */
+  grid-row: 2; /* Componente en la segunda fila */
+}
+
+.CrudComponent {
+  grid-column: 1; /* Componente en la primera columna */
+  grid-row: 3; /* Componente en la tercera fila */
+}
+
+/* Estilos responsivos */
+@media (min-width: 768px) {
+  .containerApp {
+    grid-template-columns: 1fr; /* Columna única */
+    grid-template-rows: auto; /* Altura automática */
+  }
+
+  .Home {
+    grid-row: 2; /* Componente en la segunda fila */
+  }
+
+  .CrudComponent {
+    grid-row: 3; /* Componente en la tercera fila */
+  }
+}
