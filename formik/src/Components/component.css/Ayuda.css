@@ -1,0 +1,45 @@
+.ayuda-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .ayuda-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .ayuda-container h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .ayuda-container p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .ayuda-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .ayuda-container {
+      padding: 10px;
+    }
+  
+    .ayuda-container h2 {
+      font-size: 28px;
+    }
+  
+    .ayuda-container h3 {
+      font-size: 20px;
+    }
+  
+    .ayuda-container p {
+      font-size: 16px;
+    }
+  }
+  

@@ -1,0 +1,31 @@
+.quienes-somos-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .quienes-somos-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .quienes-somos-container p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .quienes-somos-container {
+      padding: 10px;
+    }
+  
+    .quienes-somos-container h2 {
+      font-size: 28px;
+    }
+  
+    .quienes-somos-container p {
+      font-size: 16px;
+    }
+  }
+  

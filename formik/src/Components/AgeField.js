@@ -1,9 +1,8 @@
 import React from 'react';
 import { useField } from 'formik';
-import './component.css/AgeField.css';
 
-const AgeField = ({ label, ...props }) => {
-  const [field, meta, helpers] = useField({ ...props, type: 'AgeField' });
+const AgeField = ({label, ...props }) => {
+  const [field, meta, helpers] = useField({...props, type: 'AgeField' });
 
   const handleIncrement = () => {
     helpers.setValue(field.value + 1);
@@ -14,57 +13,20 @@ const AgeField = ({ label, ...props }) => {
   };
 
   return (
-    <div className="form-control">
-      <label className="form-label">{label}</label>
+    <div>
+      <label>{label}</label>
       <div>
-        <button className="form-input" type="button" onClick={handleDecrement}>
+        <button type="button" onClick={handleDecrement}>
           -
         </button>
-        <input className="form-input" type="number" {...field} {...props} />
-        <button className="form-input" type="button" onClick={handleIncrement}>
+        <input type="number" {...field}{...props} />
+        <button type="button" onClick={handleIncrement}>
           +
         </button>
       </div>
-      {meta.touched && meta.error && <div className="error-message">{meta.error}</div>}
+      {meta.touched && meta.error && <div>{meta.error}</div>}
     </div>
   );
 };
 
 export default AgeField;
-
-
-
-
-
-// // import React from 'react';
-// import { useField } from 'formik';
-
-// const AgeField = ({label, ...props }) => {
-//   const [field, meta, helpers] = useField({...props, type: 'AgeField' });
-
-//   const handleIncrement = () => {
-//     helpers.setValue(field.value + 1);
-//   };
-
-//   const handleDecrement = () => {
-//     helpers.setValue(field.value - 1);
-//   };
-
-//   return (
-//     <div>
-//       <label>{label}</label>
-//       <div>
-//         <button type="button" onClick={handleDecrement}>
-//           -
-//         </button>
-//         <input type="number" {...field}{...props} />
-//         <button type="button" onClick={handleIncrement}>
-//           +
-//         </button>
-//       </div>
-//       {meta.touched && meta.error && <div>{meta.error}</div>}
-//     </div>
-//   );
-// };
-
-// export default AgeField;

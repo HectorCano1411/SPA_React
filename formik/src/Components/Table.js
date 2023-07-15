@@ -1,16 +1,15 @@
 import React from 'react';
-// import './FormComponent.css';
+import './component.css/Tabla.css'
 
 const Table = ({ formData, handleEditClick, handleDelete }) => {
   return (
-    <div className='table-container'>
-    <table className="table">
+    <table className="table-container">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Correo</th>
-          <th>Edad</th> 
+          <th>Edad</th>
           <th>Categoría</th>
           <th>Desarrollador</th>
           <th>Fecha automática</th>
@@ -27,19 +26,23 @@ const Table = ({ formData, handleEditClick, handleDelete }) => {
             <td>{data.select}</td>
             <td>{data.radio}</td>
             <td>{data.automaticDate}</td>
-            <td className="actions">
-              <button type='button' onClick={() => handleEditClick(index)}>Editar</button>
-              <button type='button' onClick={() => handleDelete(index)}>Eliminar</button>
+            <td>
+              <button className="edit-button" type="button" onClick={() => handleEditClick(index)}>
+                Editar
+              </button>
+              <button className="delete-button" type="button" onClick={() => handleDelete(index)}>
+                Eliminar
+              </button>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
-    </div>
   );
 };
 
 export default Table;
+
 
 // import React from 'react';
 

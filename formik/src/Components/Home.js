@@ -1,158 +1,220 @@
-import React from 'react';
+
+// import React from 'react';
+// import './component.css/Home.css';
+// import Carousel from 'react-bootstrap/Carousel';
+
+// const Home = () => {
+//   return (
+//     <div className="home-container">
+//       <header className="header">
+//         <h1>Bienvenido a TechGenius</h1>
+//         <p>Tu socio en soluciones tecnológicas innovadoras</p>
+//         <p>¡Descubre todo sobre nuestra empresa tecnológica, TechGenius!</p>
+//       </header>
+
+      // <Carousel>
+      //   <Carousel.Item>
+      //     <img
+      //       className="d-block w-100"
+      //       src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600"
+      //       alt="Slide 1"
+      //     />
+      //     <Carousel.Caption>
+      //       <h3>Slide 1</h3>
+      //       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      //     </Carousel.Caption>
+      //   </Carousel.Item>
+      //   <Carousel.Item>
+      //     <img
+      //       className="d-block w-100"
+      //       src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=600"
+      //       alt="Slide 2"
+      //     />
+      //     <Carousel.Caption>
+      //       <h3>Slide 2</h3>
+      //       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      //     </Carousel.Caption>
+      //   </Carousel.Item>
+      //   <Carousel.Item>
+      //     <img
+      //       className="d-block w-100"
+      //       src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600"
+      //       alt="Slide 3"
+      //     />
+      //     <Carousel.Caption>
+      //       <h3>Slide 3</h3>
+      //       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      //     </Carousel.Caption>
+      //   </Carousel.Item>
+      // </Carousel>
+
+//       <section className="services-section">
+//         <h2 className="services-section-title">Nuestros servicios</h2>
+//         <ul className="services-list">
+//           <li className="service-item">
+//             <i className="fas fa-cogs"></i>
+//             <span className="service-name">Desarrollo de software a medida</span>
+//           </li>
+//           <li className="service-item">
+//             <i className="fas fa-lightbulb"></i>
+//             <span className="service-name">Consultoría tecnológica</span>
+//           </li>
+//           <li className="service-item">
+//             <i className="fas fa-laptop-code"></i>
+//             <span className="service-name">Diseño y desarrollo web</span>
+//           </li>
+//           <li className="service-item">
+//             <i className="fas fa-chart-line"></i>
+//             <span className="service-name">Optimización de procesos empresariales</span>
+//           </li>
+//           <li className="service-item">
+//             <i className="fas fa-puzzle-piece"></i>
+//             <span className="service-name">Integración de sistemas</span>
+//           </li>
+//           <li className="service-item">
+//             <i className="fas fa-tasks"></i>
+//             <span className="service-name">Gestión de proyectos</span>
+//           </li>
+//         </ul>
+//       </section>
+
+//     </div>
+//   );
+// };
+
+// export default Home;
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
 import './component.css/Home.css';
+import Carousel from 'react-bootstrap/Carousel';
 
 const Home = () => {
+  const [cartItems, setCartItems] = useState([]);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await fetch('https://api.example.com/cartItems');
+        const data = await response.json();
+        setCartItems(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const handleAddToCart = (product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
+    setShowSuccessMessage(true);
+  };
+
+  const handleRemoveFromCart = (product) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item !== product));
+  };
+
+  const SuccessMessage = () => {
+    useEffect(() => {
+      if (showSuccessMessage) {
+        const timer = setTimeout(() => {
+          setShowSuccessMessage(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }, [showSuccessMessage]);
+
+    return showSuccessMessage && <div className="success-message">Producto agregado al carrito</div>;
+  };
+
   return (
-    <div className="containerApp"> {/* Envuelve el componente con la clase "container" */}
-
     <div className="home-container">
-      <div className="header">
-        <h1>TechGenius</h1>
-      </div>
-      <div className="product-list">
-        <h2>Product List</h2>
-        <ul>
-          <li>Laptop Lenovo ThinkPad X1 Carbon</li>
-          <li>Apple MacBook Pro</li>
-          <li>Dell XPS 15</li>
-          <li>HP Spectre x360</li>
-          <li>Microsoft Surface Book 3</li>
-          <li>Asus ROG Zephyrus G14</li>
-          <li>Acer Predator Helios 300</li>
-          <li>Lenovo Yoga C940</li>
-          <li>MSI GS66 Stealth</li>
-          <li>Razer Blade 15</li>
-          <li>HP Envy 13</li>
-          <li>Lenovo Legion Y540</li>
-          <li>Asus ZenBook 14</li>
-          <li>Dell Alienware M15</li>
-          <li>Microsoft Surface Laptop 4</li>
-          <li>HP Omen 15</li>
-          <li>Apple iMac Pro</li>
-          <li>Lenovo ThinkCentre M90n</li>
-          <li>Asus Chromebook Flip C434</li>
-          <li>HP Pavilion Gaming Desktop</li>
+      <header className="header">
+        <h1>Bienvenido a TechGenius</h1>
+        <p>Tu socio en soluciones tecnológicas innovadoras</p>
+        <p>¡Descubre todo sobre nuestra empresa tecnológica, TechGenius!</p>
+      </header>
+
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Slide 1"
+          />
+          <Carousel.Caption>
+            <h3>Slide 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Slide 2"
+          />
+          <Carousel.Caption>
+            <h3>Slide 2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Slide 3"
+          />
+          <Carousel.Caption>
+            <h3>Slide 3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
+      <section className="services-section">
+        <h2 className="services-section-title">Nuestros servicios</h2>
+        <ul className="services-list">
+          <li className="service-item">
+            <i className="fas fa-cogs"></i>
+            <span className="service-name">Desarrollo de software a medida</span>
+            <button className="add-to-cart-btn" onClick={() => handleAddToCart('Desarrollo de software a medida')}>
+              Agregar al carrito
+            </button>
+          </li>
+          {/* Resto de los elementos de la lista con sus botones Agregar al carrito */}
         </ul>
-      </div>
-      <div className="main-section">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the content of the home page.</p>
-        <div className="table-container">
+      </section>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Product Image</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <img src="https://falabella.scene7.com/is/image/Falabella/gsc_113238654_583467_1?wid=1500&hei=1500&qlt=70" alt="Product 1" />
-                  <div>
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="cart-container">
+        <h2 className="cart-title">Carrito de compras</h2>
+        {cartItems.length === 0 ? (
+          <p className="empty-cart">El carrito está vacío</p>
+        ) : (
+          <ul className="cart-items-list">
+            {cartItems.map((item, index) => (
+              <li key={index} className="cart-item">
+                <span className="item-name">{item}</span>
+                <button className="remove-from-cart-btn" onClick={() => handleRemoveFromCart(item)}>
+                  Quitar del carrito
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-    </div>
-    </div>
-    </div>
 
+      <SuccessMessage />
+    </div>
   );
 };
 
