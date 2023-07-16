@@ -1,56 +1,64 @@
 .home-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  .header {
-    text-align: center;
-    padding: 2rem;
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .header p {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  @media (max-width: 768px) {
-    .header {
-      padding: 1rem;
-    }
-  
-    .header h1 {
-      font-size: 2rem;
-    }
-  
-    .header p {
-      font-size: 1.2rem;
-    }
-  }
-  
-/*   
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
   .header {
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 40px;
     text-align: center;
   }
   
   .header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
   
   .header p {
     font-size: 18px;
-  } */
+    margin-bottom: 10px;
+  }
   
+  .header p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Animación de entrada */
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-80px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Efecto de transición */
+  .header {
+    animation: fadeInAnimation 3s ease-in-out;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .header {
+      padding: 20px;
+    }
+  
+    .header h1 {
+      font-size: 28px;
+    }
+  
+    .header p {
+      font-size: 16px;
+    }
+  }
+   
   .content {
     text-align: center;
     margin-bottom: 20px;
@@ -59,63 +67,248 @@
   .content h2 {
     font-size: 28px;
     margin-bottom: 10px;
+    
   }
-  
-  .services-section {
+  .Carousel.Caption {
     text-align: center;
-    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    color: #333;
   }
   
-  .services-section h2 {
+  .Carousel.Caption h3 {
     font-size: 24px;
     margin-bottom: 10px;
   }
   
-  .services-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .Carousel.Caption p {
+    font-size: 16px;
+    line-height: 1.5;
   }
   
-  .services-section li {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
   
+
+.services-section {
+  background-color: #f9f9f9;
+  padding: 40px;
+}
+
+.services-section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.services-table th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+
+.services-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.services-table tr:nth-child(even) td {
+  background-color: #f0f0f0;
+}
+
+
+.services-table i {
+  margin-right: 10px;
+}
+.service-name {
+  font-weight: bold;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.service-name:hover {
+  color: #ff0000; /* Color de fuente al hacer hover */
+}
+.service-icon {
+  color: blue;
+  margin-right: 10px;
+}
+.service-icon:hover{
+  color: #ff0000; /* Color de fuente al hacer hover */
+
+}
+
+.add-to-cart-btn {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
   .services-section {
-    background-color: #f8f9fa;
-    padding: 2rem;
+    padding: 20px;
   }
-  
+
   .services-section-title {
-    color: #fff;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
+    font-size: 20px;
   }
-  
-  .services-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+
+  .services-table th,
+  .services-table td {
+    padding: 8px;
   }
-  
-  .service-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+
+  .add-to-cart-btn {
+    padding: 8px 16px;
   }
-  
-  .service-item i {
-    margin-right: 0.5rem;
-  }
+}
+
+.add-to-cart-btn:hover,
+.remove-from-cart-btn:hover {
+  background-color: #0056b3;
+}
+/* Estilo para el botón de editar */
+/* Estilo para el botón de editar */
+.edit-item-btn {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-item-btn:hover {
+  background-color: #449d44;
+}
+
+/* Estilo para el botón de guardar */
+.save-btn {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #449d44;
+}
+
+/* Estilo para el botón de cancelar */
+.cancel-btn {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #c9302c;
+}
+
+
+.cart-container {
+  margin-top: 2rem;
+}
+
+.cart-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+
+.cart-items-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.cart-item:nth-child(odd) {
+  background-color: #e9ecef;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0.5rem;
+
+}
+
+.item-name {
+  flex-grow: 1;
+  margin-left: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.item-name:hover{
+  color:red;
+}
+
+.success-message {
+  background-color: #28a745;
+  color: #fff;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+.deleted-message {
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+
+
+.remove-from-cart-btn {
+  background-color:#dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+
+}
+
+.empty-cart {
+  font-style: italic;
+  color: #777;
+  margin-top: 1rem;
+  text-align: center;
+}
+
   
   @media (max-width: 768px) {
     .services-list {

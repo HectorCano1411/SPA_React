@@ -3,6 +3,8 @@ import axios from 'axios';
 import FormComponent from './FormComponent';
 import Table from './Table';
 import './component.css/CrudComponent.css';
+import './component.css/Form.css'
+
 
 const CrudComponent = () => {
   const initialFormValues = {

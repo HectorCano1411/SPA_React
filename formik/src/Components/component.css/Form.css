@@ -1,0 +1,125 @@
+/* Estilos para el formulario */
+.form-container {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #4e4cbb;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 1rem;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  outline: none;
+  border-color: #5cb85c;
+}
+
+.form-container input:hover,
+.form-container select:hover {
+  border-color: #5cb85c;
+}
+
+.form-container .error {
+  color: white;
+  background-color: hsl(0, 100%, 50%);
+  margin-top: 0.5rem;
+  border-radius: 10px;
+max-width: 55%;
+}
+
+.form-container button {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #449d44;
+}
+
+.form-container .cancel-button {
+  background-color: #d9534f;
+}
+
+.form-container .cancel-button:hover {
+  background-color: #c9302c;
+}
+
+.form-container .hide-button {
+  background-color: #f0ad4e;
+}
+
+.form-container .hide-button:hover {
+  background-color: #ec971f;
+}
+
+.form-container .button-container {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+/* Estilos para el botón de agregar/editar */
+.form-container button[type="submit"] {
+  background-color: #337ab7;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #286090;
+}
+
+/* Estilos para el botón de ocultar */
+.form-container button[type="button"].hide-button {
+  background-color: #f0ad4e;
+}
+
+.form-container button[type="button"].hide-button:hover {
+  background-color: #ec971f;
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 767px) {
+  .form-container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .form-container button {
+    margin-top: 1rem;
+    margin-right: 0;
+  }
+
+  .form-container .button-container.mobile {
+    text-align: center;
+  }
+}

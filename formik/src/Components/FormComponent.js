@@ -7,49 +7,9 @@ import Select from './Select';
 import Radio from './Radio';
 import AutomaticDateField from './AutomaticDateField';
 import AgeField from './AgeField';
+import './component.css/Form.css'
+import validate from './validate';
 
-
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = 'Campo requerido';
-  }
-
-  if (!values.lastname) {
-    errors.lastname = 'Campo requerido';
-  }
-
-  if (!values.email) {
-    errors.email = 'Campo requerido';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    errors.email = 'Correo electrónico inválido';
-  }
-
-  if (!values.age) {
-    errors.age = 'Campo requerido';
-  } else if (values.age < 18) {
-    errors.age = 'Debes ser mayor de 18 años';
-  }
-
-  if (!values.select) {
-    errors.select = 'Selecciona una opción';
-  }
-
-  if (!values.radio) {
-    errors.radio = 'Selecciona una opción';
-  }
-
-  if (!values.automaticDate) {
-    errors.automaticDate = 'Campo requerido';
-  }
-
-  if (!values.acepto) {
-    errors.acepto = 'Debes aceptar los términos y condiciones';
-  }
-
-  return errors;
-};
 
 const FormComponent = ({ initialValues, isEditing, handleCancelEdit, onSubmit }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -75,7 +35,7 @@ const FormComponent = ({ initialValues, isEditing, handleCancelEdit, onSubmit })
             onSubmit={onSubmit}
             enableReinitialize={isEditing}
           >
-            <Form>
+            <Form className='form-container'>
               <TextInput name="name" label="Nombres" />
               <br />
               <TextInput name="lastname" label="Apellidos" />
