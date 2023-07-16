@@ -1,15 +1,3 @@
 {
-  "data": [
-    {
-      "name": "Hector Hugo",
-      "lastname": "Cano Leal",
-      "email": "the-best1987@hotmail.com",
-      "age": 18,
-      "select": "Intermedio",
-      "radio": "FullStack",
-      "automaticDate": "15/7/2023",
-      "acepto": true,
-      "id": 1
-    }
-  ]
+  "data": []
 }
