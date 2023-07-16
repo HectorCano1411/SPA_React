@@ -1,17 +1,18 @@
+
 import React, { useState, useEffect } from 'react';
 import './component.css/Home.css';
 import Carousel from 'react-bootstrap/Carousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faLaptopCode, faServer, faDatabase, faMobileAlt, faNetworkWired, faCloud, faCode, faWifi, faCertificate } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import ServiciosTable from './ServiciosTable';
 
 const Home = () => {
   const [cartItems, setCartItems] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [deletedProductName, setDeletedProductName] = useState('');
+  const [deletedProduct, setDeletedProduct] = useState(null);
+  const [itemToRemove, setItemToRemove] = useState(null);
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem('cartItems');
@@ -25,9 +26,24 @@ const Home = () => {
   };
 
   const handleAddToCart = (product) => {
-    const updatedItems = [...cartItems, product];
-    setCartItems(updatedItems);
-    updateLocalStorage(updatedItems);
+    const existingItem = cartItems.find((item) => item.name === product);
+
+    if (existingItem) {
+      const updatedItems = cartItems.map((item) => {
+        if (item.name === product) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      setCartItems(updatedItems);
+      updateLocalStorage(updatedItems);
+    } else {
+      const updatedItems = [...cartItems, { name: product, quantity: 1 }];
+      setCartItems(updatedItems);
+      updateLocalStorage(updatedItems);
+    }
+
+    setDeletedProduct(null);
     setShowSuccessMessage(true);
   };
 
@@ -38,7 +54,7 @@ const Home = () => {
   const handleUpdateItem = (event) => {
     event.preventDefault();
     const updatedItem = event.target.editItem.value;
-    const updatedItems = cartItems.map((item) => (item === editingItem ? updatedItem : item));
+    const updatedItems = cartItems.map((item) => (item.name === editingItem ? { ...item, name: updatedItem } : item));
     setCartItems(updatedItems);
     updateLocalStorage(updatedItems);
     setEditingItem(null);
@@ -49,25 +65,38 @@ const Home = () => {
   };
 
   const handleRemoveFromCart = (product) => {
-    setDeletedProductName(product);
+    setItemToRemove(product);
     setShowDeleteConfirmation(true);
-    setShowSuccessMessage(false);
   };
 
   const confirmDelete = () => {
-    const updatedItems = cartItems.filter((item) => item !== deletedProductName);
-    setCartItems(updatedItems);
-    updateLocalStorage(updatedItems);
-    if (editingItem === deletedProductName) {
-      setEditingItem(null);
+    const existingItem = cartItems.find((item) => item.name === itemToRemove);
+
+    if (existingItem) {
+      if (existingItem.quantity > 1) {
+        const updatedItems = cartItems.map((item) => {
+          if (item.name === itemToRemove) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        });
+        setCartItems(updatedItems);
+        updateLocalStorage(updatedItems);
+      } else {
+        const updatedItems = cartItems.filter((item) => item.name !== itemToRemove);
+        setCartItems(updatedItems);
+        updateLocalStorage(updatedItems);
+      }
     }
+
+    setDeletedProduct(itemToRemove);
     setShowDeleteConfirmation(false);
     setShowSuccessMessage(true);
   };
 
-  
   const cancelDelete = () => {
     setShowDeleteConfirmation(false);
+    setItemToRemove(null);
   };
 
   const SuccessMessage = () => {
@@ -84,16 +113,16 @@ const Home = () => {
 
     return (
       <>
-        {showSuccessMessage && deletedProductName === '' && (
+        {showSuccessMessage && !deletedProduct && (
           <div className="success-message">Producto agregado al carrito</div>
         )}
-        {showSuccessMessage && deletedProductName !== '' && (
+        {showSuccessMessage && deletedProduct && (
           <div className="success-message deleted-message">Producto eliminado del carrito</div>
         )}
       </>
     );
   };
-  
+
   return (
     <div className="home-container">
       <header className="header">
@@ -140,130 +169,10 @@ const Home = () => {
 
       <section className="services-section">
         <h2 className="services-section-title">Nuestros servicios</h2>
-        <table className="services-table">
-          <thead>
-            <tr>
-              <th>Servicio</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faCogs} className="service-icon" />
-                <span className="service-name">Desarrollo de software a medida</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Desarrollo de software a medida')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faLaptopCode} className="service-icon" />
-                <span className="service-name">Desarrollo web</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Desarrollo web')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faServer} className="service-icon" />
-                <span className="service-name">Administración de servidores</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Administración de servidores')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faDatabase} className="service-icon" />
-                <span className="service-name">Bases de datos</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Bases de datos')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faMobileAlt} className="service-icon" />
-                <span className="service-name">Desarrollo de aplicaciones móviles</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Desarrollo de aplicaciones móviles')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faNetworkWired} className="service-icon" />
-                <span className="service-name">Redes y seguridad informática</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Redes y seguridad informática')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faCloud} className="service-icon" />
-                <span className="service-name">Computación en la nube</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Computación en la nube')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faCode} className="service-icon" />
-                <span className="service-name">Consultoría en desarrollo de software</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Consultoría en desarrollo de software')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faWifi} className="service-icon" />
-                <span className="service-name">Conectividad y comunicaciones</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Conectividad y comunicaciones')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faCertificate} className="service-icon" />
-                <span className="service-name">Certificaciones tecnológicas</span>
-              </td>
-              <td>
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart('Certificaciones tecnológicas')}>
-                  Agregar al carrito
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <ServiciosTable handleAddToCart={handleAddToCart} />
       </section>
 
       <SuccessMessage />
-    
 
       <div className="cart-container">
         <h2 className="cart-title">Carrito de compras</h2>
@@ -273,19 +182,19 @@ const Home = () => {
           <ul className="cart-items-list">
             {cartItems.map((item, index) => (
               <li key={index} className="cart-item">
-                {editingItem === item ? (
+                {editingItem === item.name ? (
                   <form onSubmit={handleUpdateItem}>
-                    <input type="text" name="editItem" defaultValue={item} />
+                    <input type="text" name="editItem" defaultValue={item.name} />
                     <button type="submit" className="save-btn">Guardar</button>
                     <button type="button" className="cancel-btn" onClick={handleCancelEdit}>Cancelar</button>
                   </form>
                 ) : (
                   <>
-                    <span className="item-name">{item}</span>
-                    <button className="edit-item-btn" onClick={() => handleEditItem(item)}>
+                    <span className="item-name">{item.name} ({item.quantity})</span>
+                    <button className="edit-item-btn" onClick={() => handleEditItem(item.name)}>
                       Editar
                     </button>
-                    <button className="remove-from-cart-btn" onClick={() => handleRemoveFromCart(item)}>
+                    <button className="remove-from-cart-btn" onClick={() => handleRemoveFromCart(item.name)}>
                       Quitar del carrito
                     </button>
                   </>
@@ -300,7 +209,7 @@ const Home = () => {
         <Modal.Header closeButton>
           <Modal.Title>Confirmar eliminación</Modal.Title>
         </Modal.Header>
-        <Modal.Body>¿Estás seguro de eliminar este producto?</Modal.Body>
+        <Modal.Body>¿Estás seguro de disminuir la cantidad de este producto?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={cancelDelete}>
             No

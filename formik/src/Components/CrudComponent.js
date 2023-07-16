@@ -153,7 +153,7 @@ const CrudComponent = () => {
       <p>Puedes comunicarte con nosotros a través del siguiente correo electrónico: hector.cano@inacapmail.cl</p>
       <br/>
 
-      <h3>Haz click en agregar para contactrnos contigo</h3>
+      <h3>Haz click en agregar para contactarnos contigo</h3>
       
       
       <br/>
