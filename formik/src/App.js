@@ -21,7 +21,6 @@
 // }
 
 
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,6 +29,7 @@ import Home from './Components/Home';
 import QuienesSomos from './Components/QuienesSomos';
 import Ayuda from './Components/Ayuda';
 import CrudComponent from './Components/CrudComponent';
+import Footer from './Components/Footer';
 
 function App() {
   return (
@@ -42,10 +42,10 @@ function App() {
           <Route path="/Ayuda" element={<Ayuda />} />
           <Route path="/Contacto" element={<CrudComponent />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
 }
 
 export default App;
-

@@ -25,7 +25,8 @@
   padding: 1rem 2rem;
   border-bottom: 1px solid #dee2e6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -33,6 +34,8 @@
   font-weight: 500;
   transition: color 0.3s ease-in-out;
   position: relative;
+  font-weight: bold;
+
 
 }
 

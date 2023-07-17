@@ -1,8 +1,8 @@
 .home-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px  rgba(0, 0, 0, 1.5);
 }
 
   .header {
@@ -10,6 +10,8 @@
     color: #fff;
     padding: 40px;
     text-align: center;
+    font-weight: bold;
+    
   }
   
   .header h1 {
@@ -128,26 +130,37 @@
 }
 .service-name {
   font-weight: bold;
+  font-size: 20px;
   transition: color 0.3s ease;
   cursor: pointer;
 }
 
 .service-name:hover {
-  color: #ff0000; /* Color de fuente al hacer hover */
+  color: #3700ff; /* Color de fuente al hacer hover */
 }
 .service-icon {
   color: blue;
   margin-right: 10px;
+  font-size: 20px;
+
 }
 .service-icon:hover{
   color: #ff0000; /* Color de fuente al hacer hover */
 
 }
+.precio- {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+
+}
+
 
 .add-to-cart-btn {
-  background-color: #007bff;
+  background-color: blue;
+  font-weight: bold;
   color: #fff;
-  border-radius: 15px;
+  border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 10px;
@@ -185,7 +198,8 @@
 /* Estilo para el botón de editar */
 /* Estilo para el botón de editar */
 .edit-item-btn {
-  background-color: #5cb85c;
+  background-color: green;
+  font-weight: bold;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -196,12 +210,13 @@
 }
 
 .edit-item-btn:hover {
-  background-color: #449d44;
+  background-color: blue;
 }
 
 /* Estilo para el botón de guardar */
 .save-btn {
-  background-color: #5cb85c;
+  background-color: green;
+  font-weight: bold;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
@@ -213,34 +228,81 @@
 }
 
 .save-btn:hover {
-  background-color: #449d44;
+  background-color: blue;
 }
 
 /* Estilo para el botón de cancelar */
 .cancel-btn {
-  background-color: #d9534f;
+  background-color: red;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
 .cancel-btn:hover {
-  background-color: #c9302c;
+  background-color: blue;
 }
 
 
 .cart-container {
   margin-top: 2rem;
+  text-align: center;
+
 }
 
 .cart-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+.cart {
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin-top: 20px;
+}
+.cart-icon {
+  margin-right: 10px;
+  color: rgb(2, 112, 255);
+  
 }
 
+@media (max-width: 768px) {
+  .cart-title {
+    font-size: 20px;
+  }
+}
+.toggle-cart-btn {
+  background-color: green;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-cart-btn.active {
+  background-color: #ff1100;
+}
+
+.toggle-cart-btn:hover {
+  background-color: #45a049;
+}
+
+.toggle-cart-btn:focus {
+  outline: none;
+}
 
 .cart-items-list {
   list-style: none;
@@ -269,31 +331,47 @@
   flex-grow: 1;
   margin-left: 1rem;
   font-weight: bold;
+  font-size: 20px;
+
   cursor: pointer;
 }
 .item-name:hover{
-  color:red;
+  color:rgb(4, 0, 255);
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+  
 }
 
 .success-message {
   background-color: #28a745;
+  font-weight: bold;
   color: #fff;
   padding: 1rem;
   margin-top: 1rem;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);  
 }
 .deleted-message {
   background-color: red;
+  font-weight: bold;
   color: white;
   padding: 1rem;
   margin-top: 1rem;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 
 
 .remove-from-cart-btn {
-  background-color:#dc3545;
+  background-color:red;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;

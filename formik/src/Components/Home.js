@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import './component.css/Home.css';
 import Carousel from 'react-bootstrap/Carousel';
+import { FaShoppingCart } from 'react-icons/fa';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import ServiciosTable from './ServiciosTable';
+import ServiciosTable, { getPrecioEnDolares } from './ServiciosTable';
+  
 
 const Home = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -13,13 +14,55 @@ const Home = () => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deletedProduct, setDeletedProduct] = useState(null);
   const [itemToRemove, setItemToRemove] = useState(null);
+  const [availableProducts, setAvailableProducts] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem('cartItems');
     if (storedCartItems) {
       setCartItems(JSON.parse(storedCartItems));
     }
+
+    // Simulating available products from the ServiciosTable component
+    const mockAvailableProducts = [
+      'Desarrollo de software a medida',
+      'Desarrollo web',
+      'Administración de servidores',
+      'Bases de datos',
+      'Desarrollo de aplicaciones móviles',
+      'Redes y seguridad informática',
+      'Computación en la nube',
+      'Consultoría en desarrollo de software',
+      'Conectividad y comunicaciones',
+      'Certificaciones tecnológicas',
+    ];
+    setAvailableProducts(mockAvailableProducts);
   }, []);
+  
+  const updateCartData = (items, totalPrice) => {
+    const cartData = {
+      items: items,
+      total: totalPrice,
+    };
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  };
+
+  const calculateTotal = () => {
+    let totalPrice = 0;
+    for (const item of cartItems) {
+      const price = getPrecioEnDolares(item.name);
+      const quantity = item.quantity;
+      totalPrice += price * quantity;
+    }
+    setTotal(totalPrice);
+    updateCartData(cartItems, totalPrice); // Guardar los datos actualizados en el localStorage
+  };
+
+  useEffect(() => {
+    calculateTotal();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItems]);
 
   const updateLocalStorage = (items) => {
     localStorage.setItem('cartItems', JSON.stringify(items));
@@ -48,7 +91,7 @@ const Home = () => {
   };
 
   const handleEditItem = (item) => {
-    setEditingItem(item);
+    setEditingItem(item.name);
   };
 
   const handleUpdateItem = (event) => {
@@ -123,6 +166,10 @@ const Home = () => {
     );
   };
 
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
+
   return (
     <div className="home-container">
       <header className="header">
@@ -175,33 +222,49 @@ const Home = () => {
       <SuccessMessage />
 
       <div className="cart-container">
-        <h2 className="cart-title">Carrito de compras</h2>
-        {cartItems.length === 0 ? (
-          <p className="empty-cart">El carrito está vacío</p>
-        ) : (
-          <ul className="cart-items-list">
-            {cartItems.map((item, index) => (
-              <li key={index} className="cart-item">
-                {editingItem === item.name ? (
-                  <form onSubmit={handleUpdateItem}>
-                    <input type="text" name="editItem" defaultValue={item.name} />
-                    <button type="submit" className="save-btn">Guardar</button>
-                    <button type="button" className="cancel-btn" onClick={handleCancelEdit}>Cancelar</button>
-                  </form>
-                ) : (
-                  <>
-                    <span className="item-name">{item.name} ({item.quantity})</span>
-                    <button className="edit-item-btn" onClick={() => handleEditItem(item.name)}>
-                      Editar
-                    </button>
-                    <button className="remove-from-cart-btn" onClick={() => handleRemoveFromCart(item.name)}>
-                      Quitar del carrito
-                    </button>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
+        <h2 className="cart-title">
+          <FaShoppingCart className="cart-icon" /> Carrito de compras
+        </h2>
+        <button className="toggle-cart-btn" onClick={toggleCart}>
+          {showCart ? 'Esconder carrito' : 'Mostrar carrito'}
+        </button>
+        {showCart && (
+          <>
+            {cartItems.length === 0 ? (
+              <p className="empty-cart">El carrito está vacío</p>
+            ) : (
+              <ul className="cart-items-list">
+                {cartItems.map((item, index) => (
+                  <li key={index} className="cart-item">
+                    {editingItem === item.name ? (
+                      <form onSubmit={handleUpdateItem}>
+                        <select name="editItem" defaultValue={item.name}>
+                          {availableProducts.map((product) => (
+                            <option key={product} value={product}>
+                              {product}
+                            </option>
+                          ))}
+                        </select>
+                        <button type="submit" className="save-btn">Guardar</button>
+                        <button type="button" className="cancel-btn" onClick={handleCancelEdit}>Cancelar</button>
+                      </form>
+                    ) : (
+                      <>
+                        <span className="item-name">{item.name} ({item.quantity})</span>
+                        <button className="edit-item-btn" onClick={() => handleEditItem(item)}>
+                          Editar
+                        </button>
+                        <button className="remove-from-cart-btn" onClick={() => handleRemoveFromCart(item.name)}>
+                          Quitar del carrito
+                        </button>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="total-price">Total: ${total}</p>
+          </>
         )}
       </div>
 
@@ -219,6 +282,8 @@ const Home = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      
     </div>
   );
 };
