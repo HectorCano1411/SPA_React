@@ -177,7 +177,7 @@ const Home = () => {
         <p>Tu socio en soluciones tecnológicas innovadoras</p>
         <p>¡Descubre todo sobre nuestra empresa tecnológica, TechGenius!</p>
       </header>
-
+    
       <Carousel>
         <Carousel.Item>
           <img
@@ -213,7 +213,7 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-
+      
       <section className="services-section">
         <h2 className="services-section-title">Nuestros servicios</h2>
         <ServiciosTable handleAddToCart={handleAddToCart} />

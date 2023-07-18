@@ -1,31 +1,67 @@
 .quienes-somos-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1.5);
+  text-align: center;
+  
+}
+
+.quienes-somos-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateX(-80px);
+  animation: fadeInAnimationTitle 3s forwards;
+}
+
+@keyframes fadeInAnimationTitle {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
   }
-  
-  .quienes-somos-container h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .quienes-somos-container p {
-    font-size: 18px;
-    margin-bottom: 10px;
-    line-height: 1.5;
+}
+
+.quienes-somos-title:hover {
+  transform: scale(1.1);
+}
+
+.quienes-somos-text {
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: #666;
+  opacity: 0;
+  transform: translateX(80px);
+  animation: fadeInAnimationText 3s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimationText {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
   }
-  
-  @media (max-width: 768px) {
-    .quienes-somos-container {
-      padding: 10px;
-    }
-  
-    .quienes-somos-container h2 {
-      font-size: 28px;
-    }
-  
-    .quienes-somos-container p {
-      font-size: 16px;
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
+}
+
+.quienes-somos-text:first-letter {
+  font-weight: bold;
+}

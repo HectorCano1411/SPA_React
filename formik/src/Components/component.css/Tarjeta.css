@@ -1,0 +1,45 @@
+@keyframes fadeInAnimationTitle {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: fadeInAnimationTitle 3s ease-in-out;
+}
+
+.card-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: #666;
+  opacity: 0;
+  transform: translateX(80px);
+  animation: fadeInAnimationText 3s ease-in-out forwards;
+}
+.card-text::first-letter{
+  font-weight: bold;
+  
+}
+@keyframes fadeInCrossAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px) translateY(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.fade-in-animation {
+  animation: fadeInAnimation 1s ease-in-out forwards;
+}

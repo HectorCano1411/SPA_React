@@ -41,7 +41,7 @@
 
 .navbar-nav .nav-item .nav-link:hover {
   color: #ffffff;
-  background-color: #12ee42;
+  background-color: #333;
   border-radius: 10px;
 }
 .navbar-nav .nav-item .nav-link::after {

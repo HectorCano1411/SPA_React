@@ -1,3 +1,15 @@
 {
-  "data": []
+  "data": [
+    {
+      "name": "Hector Hugo",
+      "lastname": "Cano Leal",
+      "email": "Thaina.cano@correo.com",
+      "age": 36,
+      "select": "Principiante",
+      "radio": "Back-End",
+      "automaticDate": "17/7/2023",
+      "acepto": true,
+      "id": 1
+    }
+  ]
 }

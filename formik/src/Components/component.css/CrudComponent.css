@@ -1,44 +1,210 @@
 .crud-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  background-image: url(https://images.pexels.com/photos/8439085/pexels-photo-8439085.jpeg?auto=compress&cs=tinysrgb&w=600);
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1.5);
+}
+
+
+.crud-container h1 {
   
-  .crud-container .success-message-container {
-    background-color: #dff0d8;
-    border: 1px solid #d0e9c6;
-    color: #3c763d;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  color: white;
+  background-color: rgba(51, 51, 51, 0.5);
+  text-transform: uppercase;
+  animation: fadeInAnimationTitle 4s ease-in-out; /* Aplicar la animación */
+}
+
+@keyframes fadeInAnimationTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: white;
+  animation: fadeInAnimationText 2s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimationText {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px); /* Iniciar desde la izquierda */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Llegar a la posición final */
+  }
+}
+
+
+
+.crud-container p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  animation: fadeInAnimationTitle 3s ease-in-out; /* Aplicar la animación */
+
+}
+
+.crud-container .success-message-container {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: rgb(0,128,0,0.5);
+  border: 1px solid #008602;
+  color: #3c763d;
+  font-size: 18px;
+}
+
+.crud-container .success-message-container h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+.add-button {
+  background-color: rgba(0, 128, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+.add-button:hover{
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.crud-container h4{
+  color: white;
+  animation: fadeInAnimationText 2s ease-in-out forwards;
+
+}
+
+.table-responsive {
+  overflow-x: auto;
+
+}
+
+.table-striped {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-striped th
+{
+  background-color: #333;
+  color: white;
+  padding: 10px;
+
+}
+.table-striped td {
+  padding: 10px;
+  background-color: darkgray;
+  background: transparent;
+  
+}
+
+.table-striped th {
+  font-weight: bold;
+
+}
+
+.table-striped td {
+  vertical-align: middle;
+  color: white;
+}
+
+.btn-primary,
+.btn-danger {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 10px;
+
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background-color: rgba(0, 0, 255, 0.5);
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+}
+
+.btn-danger {
+  background-color: rgba(255, 0, 0, 0.5); 
+  border: none;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 576px) {
+  .crud-container {
     padding: 10px;
-    margin-bottom: 20px;
   }
-  
-  .crud-container .success-message-container h2 {
-    font-size: 24px;
-    margin-top: 0;
+
+  .crud-container h3 {
+    font-size: 20px;
+  }
+
+  .crud-container p {
+    font-size: 14px;
     margin-bottom: 10px;
   }
-  
-  .crud-container .success-message-container p {
-    font-size: 16px;
-    margin-top: 0;
-    margin-bottom: 0;
+
+  .btn-primary,
+  .btn-danger {
+    font-size: 12px;
+    padding: 6px 12px;
   }
-  
-  @media (max-width: 768px) {
-    .crud-container {
-      padding: 10px;
-    }
-  
-    .crud-container .success-message-container {
-      margin-bottom: 10px;
-    }
-  
-    .crud-container .success-message-container h2 {
-      font-size: 20px;
-    }
-  
-    .crud-container .success-message-container p {
-      font-size: 14px;
-    }
+
+  .table-striped th,
+  .table-striped td {
+    font-size: 12px;
+    padding: 5px;
   }
-  
+}

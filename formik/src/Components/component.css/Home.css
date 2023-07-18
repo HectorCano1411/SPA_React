@@ -1,7 +1,8 @@
 .home-container {
-  max-width: 1300px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 20px;
+  background-color: #f8f8f8;
   box-shadow: 0 2px 6px  rgba(0, 0, 0, 1.5);
 }
 
@@ -11,7 +12,7 @@
     padding: 40px;
     text-align: center;
     font-weight: bold;
-    
+    max-height: 250px;
   }
   
   .header h1 {
@@ -60,7 +61,7 @@
       font-size: 16px;
     }
   }
-   
+
   .content {
     text-align: center;
     margin-bottom: 20px;
@@ -259,7 +260,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
 
 }
@@ -386,7 +387,11 @@
   margin-top: 1rem;
   text-align: center;
 }
-
+.btn-secondary{
+ background-color: red;
+ width: 100%;
+ border-radius: 10px;
+}
   
   @media (max-width: 768px) {
     .services-list {
