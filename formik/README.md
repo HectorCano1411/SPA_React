@@ -1,3 +1,37 @@
+SPA_REAct al 90% 
+I. Presentación
+1. Considere como base, la web presentada en la evaluación 3 para
+desarrollar una Web SPA usando framework REACT. Esta debe
+contener al menos los siguientes ítems:
+1.1.1. Uso de secciones: Home, Quienes somos, Contacto, Otra*.
+1.1.2. Utilización de imágenes.
+1.1.3. Utilización de tablas.
+1.1.4. Utilización de listas.
+1.1.5. Utiliza elementos CSS.
+1.1.6. Uso de formulario con:
+1.1.6.1. Minimo 6 campos de registro, donde debe contenerse:
+checkbox, listbox, fechas automáticas, email, campo
+numérico, campo texto. 
+Requerimientos Item I cumplidos al 100%
+
+II. Aspectos de diseño y funcionalidad.
+2.1. De acuerdo con diseño de la web SPA, desarrolle lo siguiente:
+2.1.1. Diseño Responsivo.
+2.1.2. Indique comentarios del uso de los elementos, funciones u
+otros, utilizados en sus bloques de código.
+2.1.3. CRUD usando Local Storage.
+Requerimientos Item II cumplidos al 100%
+
+III. Criterios de evaluación
+Esta actividad, considera los siguientes criterios de evaluación 
+expresados en
+la escala de apreciación 1:
+ 3.1.1 Codifica componentes en JavaScript, basado en un Framework.
+ 3.1.2 Codifica CRUD usando Local Storage.
+ 3.1.3 Codifica script que permita cargar datos desde una API.
+ 3.1.4 Establece propuestas de solución pertinentes Crea documentos
+anidados según requerimiento.
+Requerimientos Item III cumplidos al 100%
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
