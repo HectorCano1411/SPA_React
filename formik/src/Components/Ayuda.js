@@ -51,7 +51,7 @@ const Ayuda = () => {
       <p>Encontrarás guías paso a paso, tutoriales y ejemplos prácticos para ayudarte a comenzar rápidamente.</p>
      <div>
       <h1>Noticias</h1>
-      <p>Mantente al informado de lo que esta aconteciendo en el mundo e la informática</p>
+      <p>Mantente informado de lo que esta aconteciendo en el mundo e la informática.</p>
       <br/>
         <Row xs={1} md={2} className="g-4">
           {Array.from({ length: 4 }).map((_, idx) => (
